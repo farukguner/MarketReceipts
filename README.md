@@ -20,18 +20,16 @@
 #### To-Do Tasks
 - FireBase oluşturulacak
 - Firebase RealTime database bağlantısı yapılacak.
-- Menü isimleri düzeltilecek.
-- Fiş resmi çekme için buton eklenecek
-- Fiş'in firebase yüklenmesi için upload buton'u eklenecek
 - Fiş listeleme menüsü eklenecek.
 - Filtreleme eklenecek
 - Resim büyütme eklenecek.
+- Buton aksiyonları yazılacak.
+
 
 #### Gerceklestirilenler
 - Proje Oluşturulması(C'in-1)
 - Readme.md dosyasının güncellenmesi(C'in-1)
-
+- Menü isimleri düzeltilecek.(C'in-2)
+- Ana Sayfaya resim çekme ve yükleme için butonlar eklendi(C'in-2)
 
 #### Kutuphaneler
-
-

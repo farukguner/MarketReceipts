@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Market Receipts</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Ana Sayfa</string>
+    <string name="title_dashboard">Fişler</string>
 </resources>
