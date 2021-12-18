@@ -18,12 +18,11 @@
 - Firebase NoSql
 
 #### To-Do Tasks
-- FireBase oluşturulacak
-- Firebase RealTime database bağlantısı yapılacak.
 - Fiş listeleme menüsü eklenecek.
 - Filtreleme eklenecek
-- Resim büyütme eklenecek.
-- Buton aksiyonları yazılacak.
+- Galeri'den resim ekleme özelliği
+- İsim değişikliği
+- İcon değişikliği
 
 
 #### Gerceklestirilenler
@@ -31,5 +30,11 @@
 - Readme.md dosyasının güncellenmesi(C'in-1)
 - Menü isimleri düzeltilecek.(C'in-2)
 - Ana Sayfaya resim çekme ve yükleme için butonlar eklendi(C'in-2)
+- Resim büyütme eklenecek.(C'in-3)
+- Kamera'dan fotoğraf çekip eklenme özelliği (C'in-3)
+- İmageview üzerinden resmi yakınkaştırma.(C'in-3)
+- Firebase sınıfı oluşturuldu.(C'in-4)
+- Firebase RealTime database bağlantısı yapıldı.(C'in-4)
+- Firebase'ye upload etme.(C'in-4)
 
 #### Kutuphaneler

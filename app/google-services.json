@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "793246351729",
+    "project_id": "market-receipts",
+    "storage_bucket": "market-receipts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793246351729:android:4aa61adf62b6218af276d0",
+        "android_client_info": {
+          "package_name": "com.gunerfaruk.marketreceipts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793246351729-ckq3i647ojoij8dd44rtv26q4jjnopdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ-W39YT5X7S9W1qCUyZOrhN6DHsZpTBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793246351729-ckq3i647ojoij8dd44rtv26q4jjnopdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

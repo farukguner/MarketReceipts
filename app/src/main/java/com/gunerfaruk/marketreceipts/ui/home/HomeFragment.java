@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,8 +31,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gunerfaruk.marketreceipts.R;
+import com.gunerfaruk.marketreceipts.Receipt;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -39,6 +49,7 @@ import java.util.Date;
 
 public class HomeFragment extends Fragment {
 
+    //region Properties
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final int MY_Storage_PERMISSION_CODE = 101;
@@ -50,7 +61,14 @@ public class HomeFragment extends Fragment {
     private ContentValues values;
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
-
+    private byte[] dataStorage;
+    private String[] references;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    //endregion
+    
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -80,6 +98,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UploadTask uploadTask = storageRef.putBytes(dataStorage);
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Receipt test = new Receipt("images/"+references[references.length-1],new Date());
+                        myRef.push().setValue(test);
+                        Toast.makeText(getContext(), "Fiş yüklendi", Toast.LENGTH_SHORT).show();
+                        imageView.setImageBitmap(null);
+                    }
+                });
+            }
+        });
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Receipts");
+        storage = FirebaseStorage.getInstance();
 
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
 
@@ -117,6 +159,14 @@ public class HomeFragment extends Fragment {
                         getContext().getContentResolver(), takenPicUri);
                 thumbnail = rotate(thumbnail, 90);
                 imageView.setImageBitmap(thumbnail);
+                references = takenPicUri.toString().split("/");
+
+                storageRef = storage.getReference().child("images/" + references[references.length-1]);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                dataStorage = baos.toByteArray();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
